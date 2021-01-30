@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class Blindness_Effect : MonoBehaviour
 {
-    private bool invisible = false;
-    // Start is called before the first frame update
+    public SpriteRenderer[] sprites;
+    public Collider2D player;
     void Start()
     {
-        invisible = false;
+        for (int i = 0; i < sprites.Length; i++)
+            sprites[i].enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (invisible == true)
-        {   
-            this.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        invisible = true;
+    private void OnTriggerStay2D(Collider2D collision)
+    { for (int i = 0; i < sprites.Length; i++)
+        {
+            if (collision == player)
+                sprites[i].enabled = true;
+            else sprites[i].enabled = false;
+        }
     }
 }
