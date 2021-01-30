@@ -20,20 +20,29 @@ public class Movement : MonoBehaviour
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (jumped == false)
         {
-            movement.y = 1.0f;
+            movement.y = Mathf.Abs(Input.GetAxisRaw("Vertical"));
             jumped = true;
         }
-        else movement.y = 0.0f;
+        //if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))/* && jumped == false*/)
+        //{
+        //    movement.y = 1.0f;
+        //    jumped = true;
+        //}
+        //else movement.y = 0.0f;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    void Collision2D(Collision collision)
     {
+        Debug.Log("Enter");
         jumped = false;
     }
     private void FixedUpdate()
     {
-        Vector2 pos = rb.position + movement * speed * Time.fixedDeltaTime;
+        Vector2 pos;
+        pos.x = rb.position.x + movement.x * speed * Time.fixedDeltaTime;
+        pos.y = rb.position.y + movement.y * jumpSpeed * Time.fixedDeltaTime;
+
         rb.MovePosition(pos);
     }
 }
