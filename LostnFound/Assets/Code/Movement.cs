@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    Rigidbody2D rb;
     public float speed;
     public float jumpForce;
     private float moveInput;
     private bool facingRight = true;
 
+    
     private bool isGrounded;
     public Transform groundCheck;
     public float CheckRadius;
     public LayerMask whatIsGround;
     public int havejumped;
+    //private Animation anim;
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-       
+        //anim = gameObject.GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -34,7 +36,9 @@ public class Movement : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.W) && havejumped == 0 && isGrounded==true) 
         { rb.velocity = Vector2.up * jumpForce;}
-        
+
+        //if (rb.velocity.x > 0) { }
+        //if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)) { anim.Play("Walk"); }
     }
     void OnCollisionEnter2D(Collision2D col)
     {
