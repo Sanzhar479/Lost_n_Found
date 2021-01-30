@@ -196,3 +196,11 @@ LostnFound/Library/Artifacts/9b/9b0ff61e02b4ccc22f2cdd396a2f8473
 LostnFound/Library/ArtifactDB
 LostnFound/Library/StateCache/SceneView/47/472ef3c5800d88e7de3f5a8621fdc19c.json
 LostnFound/Library/SourceAssetDB
+*.bin
+*.json
+*.json
+*.cache
+*.txt
+*.dll
+*.pdb
+*.xml
