@@ -7,35 +7,36 @@ public class Movement : MonoBehaviour
     public float speed;
     private Rigidbody2D rb;
     Vector2 movement;
-    private bool jumped;
+    private bool jumped=false;
     public float jumpSpeed;
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        jumped = false;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
-        if (jumped == false)
+
+        if (Input.GetButtonDown("Jump") || jumped == false)
         {
-            movement.y = Mathf.Abs(Input.GetAxisRaw("Vertical"));
+            movement.y = 1.0f;
             jumped = true;
-        }
-        //if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))/* && jumped == false*/)
-        //{
-        //    movement.y = 1.0f;
-        //    jumped = true;
-        //}
-        //else movement.y = 0.0f;
+            
+       }
+        else { movement.y = 0f; }
     }
-    void Collision2D(Collision collision)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Enter");
-        jumped = false;
+        if (col.gameObject.tag == "Obstacle")
+        {
+            jumped = false;
+            Debug.Log("touching");
+        }
+        
     }
     private void FixedUpdate()
     {
