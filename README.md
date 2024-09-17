@@ -1,2 +1,7 @@
+Playable link on itch:
 https://sanzharz.itch.io/lostexit 
-Playable link on itch
+
+
+
+Gameplay Video:
+https://www.youtube.com/watch?v=MXW-NHtTCKE
